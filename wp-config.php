@@ -56,6 +56,13 @@ define( 'AUTH_SALT',        '~64?RwF1s=>[|a/3Tq*=|/53hyqp%KlL!7,i_x{Iw.Ec5ut/)7s
 define( 'SECURE_AUTH_SALT', 'v]}M61.?oT!)T:sc?qHLWC|2i27&Q|_[C@Cm$Y)Rv9cnauOjH,thFJetxBoH0LNs' );
 define( 'LOGGED_IN_SALT',   '*r=<5s68BbZd{DNmc6O9,KL)u[_0(eiaNhOq1a}4{P*jNU: CwyoV/TMBfD0Ac/n' );
 define( 'NONCE_SALT',       '4!fEM&b#6].&kXo.+PE8Jp|>O$QT9~+3;8zyAg1:2l|I.j_ 1a*Ht{c;M/i^+@33' );
+// 获取当前请求的协议
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+// 获取当前请求的主机名
+$host = $_SERVER['HTTP_HOST'];
+// 设置 WP_HOME 和 WP_SITEURL
+define('WP_HOME', $protocol . '://' . $host);
+define('WP_SITEURL', $protocol . '://' . $host);
 
 /**#@-*/
 
@@ -104,6 +111,3 @@ require_once ABSPATH . 'wp-settings.php';
 define("FS_METHOD", "direct");
 define("FS_CHMOD_DIR", 0777);
 define("FS_CHMOD_FILE", 0777);
-
-define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
-define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
